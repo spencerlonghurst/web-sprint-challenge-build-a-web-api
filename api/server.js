@@ -6,25 +6,25 @@ const projectsRouter = require('./projects/projects-router');
 
 server.use(express.json());
 
-server.use('/api/actions', actionsRouter); //This could be the wrong end point
-server.use('/api/projects', projectsRouter); //This could be the wrong end point
+server.use('/api/actions', actionsRouter);
+server.use('/api/projects', projectsRouter);
+
 
 
 server.get('/', (req, res) => {
   res.send('This is the working server at /')
 })
 
-server.use((err, req, res, next) => {
+server.use((err, req, res, next) => { //eslint-disable-line
   res.status(err.status || 500).json({
-    message: err.message || 'Error retreiving the thingys'
+    message: err.message || 'Error retreiving the thingys',
+    // stack: err.error.stack
   })
 })
 
 server.use('*', (req, res) => {
   res.status(404).json({ message: `${req.method} ${req.baseUrl} not found!` })
 })
-
-
 
 
 
