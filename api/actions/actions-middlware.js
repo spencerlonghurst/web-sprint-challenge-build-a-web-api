@@ -13,7 +13,7 @@ async function validateActionsId(req, res, next) {
     }
   } catch {
     res.status(500).json({
-    message: 'Error retrieving the user',
+    message: 'Error retrieving the action',
   });
   }
 }
